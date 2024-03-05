@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doctor ChatBot</title>
+
+  <style>
+    body {
+      transition: background-color 0.3s, color 0.3s;
+       font-size: 16px;
+    }
+
+    .header {
+      background-color: lightblue; /* Grey */
+      padding: 10px;
+      height:35px;
+      text-align: left;
+      position: relative;
+    }
+
+    .toggle-switch-container {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+
+    .container1 {
+      width: 20%;
+      float: left;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      height: 500px;
+    }
+
+    .header1 {
+      background-color: lightpink; /* Light Grey */
+      padding: 10px;
+      text-align: center;
+    }
+
+    .container2 {
+      width: 100%;
+      float: left;
+      box-sizing: border-box;
+      border: 1px solid #ddd;
+
+      height: 500px;
+    }
+
+    .container3 {
+      width: 100%;
+      float: left;
+      box-sizing: border-box;
+      padding: 20px;
+      height: 400px;
+      overflow-y: auto;
+     border: 1px solid #ddd; /* Light Grey */
+    }
+
+    .container4 {
+      width: 100%;
+      float: left;
+      box-sizing: border-box;
+      padding: 20px;
+      height: 100px;
+     border: 1px solid #ddd; /* Light Grey */
+      display: flex;
+    }
+
+    /* Basic Button Style */
+    .button {
+      display: inline-block;
+      padding: 10px 20px;
+      font-size: 16px;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      border: 1px solid #666; /* Grey */
+      border-radius: 4px;
+      color: #B0E0E6; /* Grey */
+      background-color: #fff;
+      transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    }
+
+    /* Hover State */
+    .button:hover {
+      background-color: #666; /* Grey */
+      color: #fff;
+      border-color: #fff;
+    }
+    .mic-button{
+   display: inline-block;
+      padding: 10px 20px;
+      font-size: 16px;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      border: 1px solid #666; /* Grey */
+      border-radius: 4px;
+      color: #B0E0E6; /* Grey */
+      background-color: #fff;
+      transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+
+    }
+    /* Basic Input Style */
+    .input-bar {
+      box-sizing: border-box;
+      width: calc(80% - 20px);
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      outline: none;
+      font-size: 16px;
+      transition: border-color 0.3s;
+    }
+
+    /* Focus State */
+    .input-bar:focus {
+      border-color: #666; /* Grey */
+    }
+
+
+
+.text-container {
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.text-content {
+    color: black;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+}
+
+
+    /* Additional style for the file input */
+    .file-input {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      cursor: pointer;
+    }
+      .button-85 {
+  padding: 0.6em 2em;
+  border: none;
+  outline: none;
+  color: rgb(255, 255, 255);
+  background: #111;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-85:before {
+  content: "";
+  background: linear-gradient(
+    45deg,
+    #ff0000,
+    #ff7300,
+    #fffb00,
+    #48ff00,
+    #00ffd5,
+    #002bff,
+    #7a00ff,
+    #ff00c8,
+    #ff0000
+  );
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing-button-85 20s linear infinite;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 10px;
+}
+
+@keyframes glowing-button-85 {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+.button-85:after {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #222;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+/* CSS for the dropdown */
+.dropdown {
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+    margin-right: 10px; /* Adjust margin as needed */
+}
+
+/* CSS for the button */
+.button {
+    padding: 8px 16px;
+    font-size: 14px;
+    background-color: #007bff; /* Blue color for the button */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Hover effect for the button */
+.button:hover {
+    background-color: #0056b3; /* Darker blue color on hover */
+}
+
+  </style>
+</head>
+
+<body>
+  <div class="header">
+    <p>Doctor ChatBot</p>
+    </div>
+
+
+
+
+  <div class="container2">
+    <div class="container3" id="container3">
+    </div>
+    <div class="container4">
+      <button class="button" id="uploadButton">Upload Image</button>
+
+      <form id="uploadForm" enctype="multipart/form-data">
+<input type="file" id="fileInput" class="file-input" style="display: none;" accept="image/*" onchange="handleFileSelect()">
+      </form>
+      <input type="text" id="selectedFileName" class="input-bar" placeholder="Chat with Doc...">
+<!-- <button class="mic-button">🎙️</button> -->
+<!-- <span style="margin-left: 15px;"></span>  Add space here -->
+<button class="button-85" id="sendButton" role="button">&#10148;</button>
+
+    </div>
+  </div>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Function to send file or text to the backend
+ function handleFileSelect() {
+        // Get the file input element
+        var fileInput = document.getElementById('fileInput');
+
+        // Get the selected file name
+        var selectedFileName = fileInput.files[0].name;
+
+        // Update the input bar with the selected file name
+        document.getElementById('selectedFileName').value = selectedFileName;
+    }
+
+    // Event listener for the file input change event
+    document.getElementById('fileInput').addEventListener('change', handleFileSelect);
+
+
+    function sendFileToBackend() {
+    // Get the file input element and text input element
+    var fileInput = document.getElementById('fileInput');
+    var selectedFileNameInput = document.getElementById('selectedFileName');
+
+    // Check if a file is selected
+    if (fileInput.files.length > 0) {
+        // Create a FormData object to send the file
+        var formData = new FormData();
+        formData.append('file', fileInput.files[0]);
+
+        // Create an image element to display the selected image
+        var selectedImage = document.createElement('img');
+        selectedImage.src = URL.createObjectURL(fileInput.files[0]);
+        selectedImage.style.maxWidth = '200px'; // Set maximum width for image
+selectedImage.style.height = 'auto'; // Maintain aspect ratio
+
+        // Append the image to container3
+        var container3 = document.getElementById('container3');
+        container3.appendChild(selectedImage);
+
+        // Use Fetch API to send the file to Flask backend
+        fetch('/upload_file', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Handle the response from the server
+            console.log(data);
+
+            // Append data with animation to the container
+            appendDataWithAnimation(container3, 'Bot : ' + data.message, 450);
+
+            // Clear the file input and input bar
+            fileInput.value = '';
+            selectedFileNameInput.value = '';
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    } else if (selectedFileNameInput.value.length > 0) {
+        // If no file is uploaded but text is present in the input, send the text to a different URL
+        var userInput = selectedFileNameInput.value;
+
+        // Use Fetch API to send the text to a different URL
+        fetch('/upload_text', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ text: userInput }) // Sending userInput directly to the server
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Handle the response from the server
+            console.log(data);
+            var container3 = document.getElementById('container3');
+            var userInputContainer = document.createElement('div');
+            userInputContainer.innerText = 'User : ' + userInput;
+            appendDataWithAnimationofuser(container3,'User: '+ userInput);
+            // Append data with animation to the container
+            appendDataWithAnimation(container3, 'Bot : ' + data.message, 450);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+
+        // Clear the input bar
+        selectedFileNameInput.value = '';
+    } else {
+        alert('Please select a file or enter text before sending.');
+    }
+}
+function appendDataWithAnimationofuser(container, text, speed) {
+    // Create a container for the text content with light blue background
+    var textContainer = document.createElement('div');
+    textContainer.classList.add('text-container');
+    textContainer.style.backgroundColor = 'lightpink';
+
+    // Create a container for the text
+    var contentContainer = document.createElement('div');
+    contentContainer.innerText = text;
+    contentContainer.classList.add('text-content');
+
+    // Append the text content to the text container
+    textContainer.appendChild(contentContainer);
+
+    // Append the text container to the main container
+    container.appendChild(textContainer);
+}
+function appendDataWithAnimation(container, text, speed) {
+    // Create a container for the text content
+    var textContainer = document.createElement('div');
+    textContainer.classList.add('text-container');
+    textContainer.style.width = '100%';
+    textContainer.style.backgroundColor = 'lightblue';
+    textContainer.style.overflow = 'auto'; // Add overflow for scrolling if needed
+
+    // Create a container for the buttons and dropdown
+    var controlsContainer = document.createElement('div');
+    controlsContainer.classList.add('controls-container');
+    controlsContainer.style.width = '100%';
+    controlsContainer.style.backgroundColor = 'lightgrey';
+    controlsContainer.style.display = 'flex';
+    controlsContainer.style.alignItems = 'center'; // Center items vertically
+
+    // Create the dropdown element
+    var dropdown = document.createElement('select');
+    dropdown.classList.add('dropdown');
+
+    // Add options to the dropdown
+    var option1 = document.createElement('option');
+    option1.value = 'en'; // Use language code 'en' for English
+    option1.text = 'English';
+    dropdown.appendChild(option1);
+
+    var option2 = document.createElement('option');
+    option2.value = 'mr'; // Use language code 'mr' for Marathi
+    option2.text = 'Marathi';
+    dropdown.appendChild(option2);
+
+    // Append dropdown and button to the controls container
+    controlsContainer.appendChild(dropdown);
+
+    // Create the text content element
+    var contentContainer = document.createElement('div');
+    contentContainer.innerText = text;
+    contentContainer.classList.add('text-content');
+
+    // Append the text content to the text container
+    textContainer.appendChild(contentContainer);
+
+    // Append controls container and text container to the main container
+    container.appendChild(controlsContainer);
+    container.appendChild(textContainer);
+
+    // Adjust the height of the text container based on the content height
+    // Remove the fixed height
+    textContainer.style.height = 'auto';
+
+    // Add event listener to the dropdown to trigger language translation
+    dropdown.addEventListener('change', function() {
+        var selectedOption = dropdown.value;
+        var textContent = contentContainer.innerText;
+        callLanguageTranslation(selectedOption, textContent, contentContainer);
+        console.log('Selected option:', selectedOption);
+    });
+}
+
+// Function to call the text-to-speech URL
+
+
+// Function to call the language translation URL
+function callLanguageTranslation(selectedOption, textContent, contentContainer) {
+    fetch('language_translation', {
+        method: 'POST',
+        body: JSON.stringify({ language: selectedOption, text: textContent }),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(response => {
+        return response.json(); // Extract JSON data from the response
+    }).then(data => {
+        // Update the content container with the translation
+        contentContainer.innerText = data.translated_text; // Assuming the response has a key named 'translated_text'
+        console.log('Language translation request sent');
+    }).catch(error => {
+        console.error('Error sending language translation request:', error);
+    });
+}
+
+
+
+    // Event listener for the send button
+    document.getElementById('sendButton').addEventListener('click', sendFileToBackend);
+
+    // Event listener for the Enter key
+    document.addEventListener('keypress', function(event) {
+        // Check if the key pressed is Enter (key code 13)
+        if (event.keyCode === 13) {
+            // Prevent the default action of the event
+            event.preventDefault();
+            sendFileToBackend();
+        }
+    });
+
+    document.getElementById('uploadButton').addEventListener('click', openFileExplorer);
+
+    function openFileExplorer() {
+        // Trigger the file input click event
+        document.getElementById('fileInput').click();
+    }
+
+    // Function to handle file selection
+
+});
+
+</script>
+
+
+</body>
+
+</html>
